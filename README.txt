@@ -14,10 +14,10 @@ Pre-requisites
 ======================================
 
     1. This plugin is designed to run on Moodle 2.x.
-        It will not work on Moodle 1.x.
+       It will not work on Moodle 1.x.
 
     2. This plugin requires the HotPot module for Moodle 2.x
-        which can be downloaded from any of the following locations: 
+       which can be downloaded from any of the following locations:
 
         (a) GIT: https://github.com/gbateson/moodle-mod_hotpot.git
         (b) CVS: the Moodle CVS repository (contrib/plugins/mod/hotpot)
@@ -34,6 +34,6 @@ To INSTALL or UPDATE this plugin
         (b) zip: the Moodle.org -> Plugins repository (search for HotPot)
         (c) zip: http://bateson.kanazawa-gu.ac.jp/zip/plugins_qformat_hotpot.zip
 
-       If you are installing from a zip file, unzip the zip file, to create a folder called "hotpot"
-       and upload or move this "hotpot" folder to the "question/format" folder on your Moodle 2.x site
-       to create a new folder at "question/format/hotpot"
+        If you are installing from a zip file, unzip the zip file, to create a folder called "hotpot"
+        and upload or move this "hotpot" folder to the "question/format" folder on your Moodle 2.x site
+        to create a new folder at "question/format/hotpot"
