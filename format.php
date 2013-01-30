@@ -388,7 +388,7 @@ class qformat_hotpot extends qformat_default {
             // there is usually only one exercise in a file
 
             $question = $this->defaultquestion();
-            $question->qtype = MATCH;
+            $question->qtype = 'match';
             $question->name = $this->hotpot_get_title($source, $x, ($x>0));
 
             $question->correctfeedback = array('text'=>'', 'format'=>FORMAT_HTML);
