@@ -38,21 +38,21 @@ function xmldb_qformat_hotpot_upgrade($oldversion) {
     // convert lowercase answer types to UPPERCASE
     // in "multianswer" questions (= close questions)
 
-    $newversion = 2010112412;
+    $newversion = 2010112413;
     if ($oldversion < $newversion) {
 
         if ($DB->sql_regex_supported()) {
             $REGEX = $DB->sql_regex();
-            $select = "qtype = ? AND questiontext $REGEX ?";
-            $params = array('shortanswer', '[0-9]+:(multianswer|shortanswer):');
+            $select = "qtype $REGEX ? AND questiontext $REGEX ?";
+            $params = array('(multianswer|multichoice|shortanswer)', '[0-9]+:(multianswer|multichoice|shortanswer):');
         } else {
             $questiontext_LIKE = $DB->sql_like('questiontext', '?');
-            $select = "qtype = ? AND ($questiontext_LIKE OR $questiontext_LIKE)";
-            $params = array('shortanswer', '%:multianswer:%', '%:shortanswer:%');
+            $select = "(qtype = ? AND $questiontext_LIKE) OR (qtype = ? AND $questiontext_LIKE) OR (qtype = ? AND $questiontext_LIKE)";
+            $params = array('multianswer', '%:multianswer:%', 'multichoice', '%:multichoice:%', 'shortanswer', '%:shortanswer:%');
         }
 
-        $search = array(':multianswer:', ':shortanswer:');
-        $replace = array(':MULTIANSWER:', ':SHORTANSWER:');
+        $search = array(':multianswer:', ':multichoice:', ':shortanswer:');
+        $replace = array(':MULTICHOICE:', ':MULTICHOICE:', ':SHORTANSWER:');
 
         $fields = 'id,questiontext,qtype';
         $limitfrom = 0;

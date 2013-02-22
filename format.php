@@ -161,7 +161,7 @@ class qformat_hotpot extends qformat_default {
 
             if (intval($source->xml_value('hotpot-config-file,'.$source->hbs_quiztype.',use-drop-down-list'))) {
                 $dropdownlist = $this->hotpot_jcloze_wordlist($source);
-                $answertype = 'multianswer';
+                $answertype = 'multichoice';
             } else {
                 $dropdownlist = false;
                 $answertype = 'shortanswer';
@@ -198,7 +198,7 @@ class qformat_hotpot extends qformat_default {
 
                     // initialize gap details
                     $gap = new stdClass();
-                    $gap->qtype = $answertype;
+                    $gap->qtype = $answertype; // leave as lower case
                     $gap->defaultmark = $defaultmark; // Moodle 2.1+
                     $gap->defaultgrade = $defaultmark; // Moodle 2.0
                     $gap->usecase = 0;
@@ -206,7 +206,7 @@ class qformat_hotpot extends qformat_default {
                     $gap->fraction = array();
                     $gap->feedback = array();
 
-                    if ($answertype=='multianswer') {
+                    if ($answertype=='multichoice') {
                         $gap->single = 1;
                         $gap->answernumbering = 0;
                         $gap->shuffleanswers = 0;
@@ -238,7 +238,7 @@ class qformat_hotpot extends qformat_default {
                                 $fraction = 0;
                                 $feedback = '';
                             }
-                            $gap->answer[] = $text;
+                            $gap->answer[] = array('text' => $text, 'format' => FORMAT_HTML);
                             $gap->fraction[] = $fraction;
                             $gap->feedback[] = array('text' => $feedback, 'format' => FORMAT_HTML);
                             $answers[] = ($fraction==0 ? '' : '=').$text.($feedback=='' ? '' : ('#'.$feedback));
