@@ -263,7 +263,7 @@ class qformat_hotpot extends qformat_default {
                     }
                     // compile answers into question text
                     $gap->questiontext = array(
-                        'text' => '{'.$defaultmark.':'.$answertype.':'.implode('~', $answers).'}',
+                        'text' => '{'.$defaultmark.':'.strtoupper($answertype).':'.implode('~', $answers).'}',
                         'format' => FORMAT_MOODLE,
                     );
                     $question->options->questions[] = $gap;
